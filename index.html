@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imaginebuild - Architectural OS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              navy: {
+                950: '#0b1221',
+                900: '#0f172a',
+                800: '#1e293b'
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            keyframes: {
+              voice: {
+                '0%, 100%': { transform: 'scaleY(0.4)', opacity: '0.4' },
+                '50%': { transform: 'scaleY(1.2)', opacity: '1' },
+              },
+              shimmer: {
+                '0%': { backgroundPosition: '-200% 0' },
+                '100%': { backgroundPosition: '200% 0' }
+              },
+              scan: {
+                '0%': { top: '0%' },
+                '100%': { top: '100%' }
+              },
+              pulseRotate: {
+                '0%': { transform: 'translate(-50%, -50%) rotate(0deg) scale(1)' },
+                '50%': { transform: 'translate(-50%, -50%) rotate(180deg) scale(1.1)' },
+                '100%': { transform: 'translate(-50%, -50%) rotate(360deg) scale(1)' }
+              },
+              gridFloat: {
+                '0%, 100%': { transform: 'translateY(0) rotateX(65deg)' },
+                '50%': { transform: 'translateY(-20px) rotateX(65deg)' }
+              }
+            },
+            animation: {
+              'voice-bar': 'voice 1s ease-in-out infinite',
+              'shimmer': 'shimmer 2.5s linear infinite',
+              'scanning': 'scan 3s linear infinite',
+              'reticle': 'pulseRotate 4s linear infinite',
+              'grid-float': 'gridFloat 6s ease-in-out infinite',
+            }
+          }
+        }
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: currentColor;
+            opacity: 0.2;
+            border-radius: 10px;
+        }
+        .text-glow {
+            text-shadow: 0 0 40px currentColor;
+        }
+        html, body {
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #root {
+          min-height: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+        .perspective-view {
+          perspective: 1200px;
+          perspective-origin: 50% 50%;
+        }
+        .ar-grid-overlay {
+          background-image: 
+            linear-gradient(to right, rgba(255,255,255,0.15) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.15) 1px, transparent 1px);
+          background-size: 60px 60px;
+          mask-image: radial-gradient(circle at 50% 50%, black 20%, transparent 80%);
+        }
+        .reticle-dash {
+          stroke-dasharray: 20 10;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.39.0",
+    "recharts": "https://esm.sh/recharts@^3.7.0",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.3",
+    "vite": "https://esm.sh/vite@^7.3.1"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-white dark:bg-navy-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-indigo-500/30 overflow-x-hidden">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
